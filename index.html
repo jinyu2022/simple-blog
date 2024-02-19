@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简单的博客</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(8px);
+        background-color: rgba(255, 255, 255, 0.8);
+        /* padding: 20px;
+        background-color: #f5f5f5; */
+      }
+      .logo {
+        height: 45px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      a {
+        text-decoration: none; /* 取消下划线 */
+        color: inherit; /* 使用父元素的字体颜色 */
+      }
+      .nav-header span {
+        padding: 8px 12px;
+        border-radius: 0.25rem;
+        font-family: "Outfit", sans-serif;
+        font-weight: 500;
+        transition: background-color 0.15s ease-in-out;
+      }
+      .nav-header span:hover {
+        background-color: rgb(229 231 235);
+      }
+      a a {
+        margin-left: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" style="width: 1024px; margin: 0 auto">
+      <header style="padding: 12px 0; position: sticky; top: 0">
+        <div class="header-container">
+          <div class="logo">
+            <a href="">
+              <img
+                src="https://www.mengke.me/_next/image?url=%2Fstatic%2Fimages%2Flogo.jpg&w=48&q=75
+              "
+                alt="logo"
+                width="45"
+                height="45"
+              />
+            </a>
+          </div>
+          <div class="nav-header">
+            <a href="">
+              <span>Blog</span>
+            </a>
+            <a href="">
+              <span>Gallery</span>
+            </a>
+            <a href="">
+              <span>Snippets</span>
+            </a>
+            <a href="">
+              <span>Projects</span>
+            </a>
+            <a href="">
+              <span>About</span>
+            </a>
+            <a href="">
+              <span>Friends</span>
+            </a>
+          </div>
+        </div>
+      </header>
+      <main style="height: 500px">44 444 444 44</main>
+    </div>
+  </body>
+</html>
