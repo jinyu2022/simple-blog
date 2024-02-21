@@ -10,83 +10,322 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./assets/main.css" />
     <style>
-      body,
-      html {
+      body {
         margin: 0;
         padding: 0;
-      }
-      .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        backdrop-filter: blur(8px);
-        background-color: rgba(255, 255, 255, 0.8);
-        /* padding: 20px;
-        background-color: #f5f5f5; */
-      }
-      .logo {
-        height: 45px;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      a {
-        text-decoration: none; /* 取消下划线 */
-        color: inherit; /* 使用父元素的字体颜色 */
-      }
-      .nav-header span {
-        padding: 8px 12px;
-        border-radius: 0.25rem;
         font-family: "Outfit", sans-serif;
-        font-weight: 500;
-        transition: background-color 0.15s ease-in-out;
-      }
-      .nav-header span:hover {
-        background-color: rgb(229 231 235);
-      }
-      a a {
-        margin-left: 8px;
       }
     </style>
   </head>
   <body>
-    <div id="app" style="width: 1024px; margin: 0 auto">
-      <header style="padding: 12px 0; position: sticky; top: 0">
+    <div id="app" style="max-width: 64rem; margin: 0 auto">
+      <header style="position: fixed; top: 0; z-index: 10;width: 100%;">
         <div class="header-container">
           <div class="logo">
             <a href="">
-              <img
-                src="https://www.mengke.me/_next/image?url=%2Fstatic%2Fimages%2Flogo.jpg&w=48&q=75
-              "
-                alt="logo"
-                width="45"
-                height="45"
-              />
+              <img src="./assets/logo.jpg" alt="logo" width="45" height="45" />
             </a>
           </div>
           <div class="nav-header">
-            <a href="">
-              <span>Blog</span>
-            </a>
-            <a href="">
-              <span>Gallery</span>
-            </a>
-            <a href="">
-              <span>Snippets</span>
-            </a>
-            <a href="">
-              <span>Projects</span>
-            </a>
-            <a href="">
-              <span>About</span>
-            </a>
-            <a href="">
-              <span>Friends</span>
-            </a>
+            <div class="top-nav">
+              <span
+              id="cross"
+              onclick="document.querySelector('.top-nav').style.transform=null"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
+              <a href="">
+                <span>Blog</span>
+              </a>
+              <a href="">
+                <span>Gallery</span>
+              </a>
+              <a href="">
+                <span>Snippets</span>
+              </a>
+              <a href="">
+                <span>Projects</span>
+              </a>
+              <a href="">
+                <span>About</span>
+              </a>
+              <a href="">
+                <span>Friends</span>
+              </a>
+            </div>
+            <div class="side-nav">
+              <a href="">
+                <span
+                  style="
+                    background-image: url(./assets/analysis.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  "
+                >
+                  &nbsp; &nbsp;
+                  <!-- 这种方式也许不如直接用svg标签 -->
+                </span>
+              </a>
+
+              <span
+                style="
+                  background-image: url(./assets/moon.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
+              >
+                &nbsp; &nbsp; &nbsp;
+              </span>
+
+              <span
+                id="setting"
+                style="
+                  background-image: url(./assets/setting.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
+                onclick="document.querySelector('.top-nav').style.transform='translateX(0)'"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
+            </div>
           </div>
         </div>
       </header>
-      <main style="height: 500px">44 444 444 44</main>
+      <main style="margin: 0.75rem">
+        <div class="hello">
+          <div>
+            <div class="howdy">
+              <span>Howdy, fellow!</span>
+              <i
+                style="
+                  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f44b.svg);
+                "
+              ></i>
+            </div>
+
+            <div class="self-introduction">
+              <div>
+                I'm <span>Mengke</span> - a dedicated
+                <span>Software Engineer</span> in <span>Peiping</span>.
+              </div>
+              <span id="typewriter"></span><span>|</span>
+            </div>
+            <div class="self-about">
+              <p>
+                I started learning to code in 2015 and have been hooked ever
+                since.
+              </p>
+              <p>I landed my first job as a Web developer in 2020.</p>
+              <p>I have a passion for JS/TS, web dev.</p>
+              <p>
+                I started this blog to document and share my knowledge &
+                experience.
+              </p>
+            </div>
+            <div class="blog-about">
+              <a href="">
+                <i
+                  style="
+                    background-image: url(https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f6e0.svg);
+                  "
+                ></i>
+                <span>What have I built?</span>
+              </a>
+              <a href="">
+                <i
+                  style="
+                    background-image: url(https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f4dd.svg);
+                  "
+                ></i>
+                <span>My writings</span>
+              </a>
+              <a href="">
+                <i
+                  style="
+                    background-image: url(https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f9ec.svg);
+                  "
+                ></i>
+                <span>My snippets collection</span>
+              </a>
+              <a href="">
+                <i
+                  style="
+                    background-image: url(https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f9d0.svg);
+                  "
+                ></i>
+                <span>More about me and myself</span>
+              </a>
+              <a href="">
+                <i
+                  style="
+                    background-image: url(https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f4bc.svg);
+                  "
+                ></i>
+                <span>My career</span>
+              </a>
+              <a href="">
+                <i
+                  style="
+                    background-image: url(https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f4ca.svg);
+                  "
+                ></i>
+                <span>Traffic & engagement of this site</span>
+              </a>
+            </div>
+            <p style="margin: 2rem 0">
+              <span style="color: rgb(75, 85, 99); font-size: 1.125rem"
+                >Happy reading</span
+              ><i
+                style="
+                  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f37b.svg);
+                  display: inline-block;
+                  width: 1.5rem;
+                  height: 1.5rem;
+                  margin-left: 0.5rem;
+                "
+              ></i>
+            </p>
+          </div>
+          <div id="card">
+            <div class="card">
+              <img
+                src="./assets/104491469_p0_master1200.jpg"
+                alt="自拍照"
+                style="width: 100%; height: 220px; object-fit: cover"
+              />
+              <div class="card-container">
+                <i
+                  style="
+                    background-image: url(./assets/Spotify.svg);
+                    display: inline-block;
+                    height: 1.5rem;
+                    width: 1.5rem;
+                  "
+                ></i>
+                <span style="margin-left: 0.5rem">Not Playing – Spotify</span>
+              </div>
+              <div class="card-content">
+                <h3>Mengke</h3>
+                <h5>Learner | Builder</h5>
+                <div class="social-links">
+                  <div><i></i><span>FE Engineer @ MICO WORLD</span></div>
+                  <div><i></i><span>Peiping, China</span></div>
+                  <div><i></i><span>me@mengke.me</span></div>
+                  <div style="justify-content: space-between">
+                    <a href="https://github.com/mk965"><span>gh/mk965</span></a>
+                    <span>|</span>
+                    <a href="https://github.com/mk965"
+                      ><span>in/mengke</span></a
+                    >
+                    <span>|</span>
+                    <a href="https://github.com/mk965"
+                      ><span>juejin/Mengke</span></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <span
+                style="
+                  background-image: linear-gradient(
+                    to right,
+                    rgb(134, 239, 172),
+                    rgb(59, 130, 246),
+                    rgb(147, 51, 234)
+                  );
+                  height: 0.375rem;
+                "
+              >
+              </span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <article class="article-container">
+            <div>
+              <div class="date">February 18, 2024</div>
+            </div>
+            <div style="margin-top: 0.5rem">
+              <h2 class="title">Some Websites</h2>
+              <div class="tag">
+                <span>#Websites</span>
+                <span>#Collect</span>
+              </div>
+              <div class="description">
+                Collected some useful or interesting websites...
+              </div>
+              <div class="read-more">
+                <a href="">Read more</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </main>
+      <footer style="padding: 0 0.75rem">
+        <div class="footer-container">
+          <div style="display: flex">
+            <span style="margin-right: 4px">Built with</span>
+            <div>
+              <img src="./assets/html5.svg" alt="html5" width="20px" />
+              <img src="./assets/css3.svg" alt="css3" width="20" />
+              <img src="./assets/javascript.svg" alt="javascript" width="20" />
+            </div>
+          </div>
+          <div>Copyright © 2024</div>
+        </div>
+      </footer>
     </div>
+    <script type="module">
+      import { typewriter, rotateCard } from "./utils.js";
+
+      /** 要循环打印的文本列表 */
+      const texts = [
+        "I'm a dedicated Software Engineer in Peiping.",
+        "I'm a learner, builder, and freedom seeker.",
+        "我是北平的一名专职软件工程师。",
+      ];
+
+      /** 开始打字
+       * @param {string[]} texts 要循环打印的文本列表
+       */
+      function startTyping(texts) {
+        let index = 0;
+        const writerElement = document.querySelector("#typewriter");
+        async function write() {
+          if (index >= texts.length) {
+            index = 0;
+          }
+          // 先清空元素内的文本
+          if (writerElement.innerHTML !== "") {
+            await typewriter(writerElement, "", "delete");
+          }
+          // 要循环只能用异步了
+          await typewriter(writerElement, texts[index]);
+          index++;
+          // 递归调用自身以实现循环
+          return setTimeout(write, 2000);
+        }
+
+        return write();
+      }
+      startTyping(texts);
+
+      // 旋转卡片
+      // 如果窗口小于768px就移除元素
+      if (window.innerWidth < 768) {
+        console.log(window.innerWidth);
+        document.querySelector(".card")?.remove();
+      }
+      const card = document.querySelector(".card");
+      const rotate = rotateCard(card);
+      // 对有放大效果的父元素添加事件委托，这样旋转的时候保证不会抖动
+      // 不然会出现旋转后鼠标不在元素上，然后元素还原，鼠标又在元素上循环旋转抖动的情况
+      document.querySelector("#card")?.addEventListener("mousemove", rotate);
+      document.querySelector("#card")?.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0deg) rotateY(0deg)";
+      });
+    </script>
   </body>
 </html>
