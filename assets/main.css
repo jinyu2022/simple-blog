@@ -5,6 +5,7 @@
   backdrop-filter: blur(8px);
   background-color: rgba(255, 255, 255, 0.8);
   padding: 12px 0.75rem;
+  
 
 }
 
@@ -241,6 +242,14 @@ a a {
 }
 
 @media (min-width: 768px) {
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    /* width: 100%;
+    overflow-x: hidden; */
+  }
+
   .howdy {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -273,7 +282,12 @@ a a {
 
 
 @media (max-width: 767px) {
-
+  .header-container{
+    position: fixed;
+    box-sizing: border-box;
+    width: 100%;
+    top: 0;
+  }
   .top-nav {
     display: flex;
     flex-direction: column;
