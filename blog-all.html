@@ -216,6 +216,13 @@
             </ul>
           </div>
         </div>
+        <div>
+          <nav class="pager-nav">
+            <button style="opacity: 0.5">上一页</button>
+            <span>1of2</span>
+            <button>下一页</button>
+          </nav>
+        </div>
       </main>
       <footer style="padding: 0 0.75rem">
         <div class="footer-container">
@@ -231,6 +238,19 @@
         </div>
       </footer>
     </div>
+    <style>
+      .pager-nav {
+        display: flex;
+        justify-content: space-between;
+      }
+      .pager-nav button {
+        padding: 0.5rem 1rem;
+        border: 0;
+        background-color: #fff;
+        color: #000;
+        cursor: pointer;
+      }
+    </style>
     <script>
       // 创建文章函数
       // function createArticleItem(article) {
@@ -277,26 +297,26 @@
       // }
       function createArticleItem(article) {
         const articleTemplate = `
-        <li>
-          <article class="article-container">
-            <div>
-              <div class="date">${article.date}</div>
-            </div>
-            <div style="margin-top: 0.5rem">
-              <h2 class="title">${article.title}</h2>
-              <div class="tag">
-                ${article.tags.map((tag) => `<span>#${tag}</span>`).join("")}
+          <li>
+            <article class="article-container">
+              <div>
+                <time class="date">${article.date}</time>
               </div>
-              <div class="description">
-                ${article.description}
+              <div style="margin-top: 0.5rem">
+                <h2 class="title">${article.title}</h2>
+                <div class="tag">
+                  ${article.tags.map((tag) => `<span>#${tag}</span>`).join("")}
+                </div>
+                <div class="description">
+                  ${article.description}
+                </div>
+                <div class="read-more">
+                  <a href="${article.url}">Read more</a>
+                </div>
               </div>
-              <div class="read-more">
-                <a href="/blog.html">Read more</a>
-              </div>
-            </div>
-          </article>
-        </li>
-      `;
+            </article>
+          </li>
+        `;
         const range = document.createRange();
         const fragment = range.createContextualFragment(articleTemplate);
         return fragment;
@@ -306,36 +326,80 @@
       // 通过请求获取文章列表
       const articles = [
         {
+          id: 1,
           date: "February 22, 2024",
           title: "打字机效果",
           tags: ["js", "effect"],
           description:
             "打字机效果，就是文字一个一个的显示出来，就像打字机一样，这种效果...",
+          url: "/blog.html#1",
         },
         {
-          date: "February 22, 2024",
-          title: "效果",
-          tags: ["j", "efect"],
+          id: 2,
+          date: "February 23, 2024",
+          title: "CSS基线问题",
+          tags: ["CSS", "开发"],
           description:
-            "打字机效果，就是文字显示出来，就像打字机一样，这种效果...",
+            "前端开发经常会遇到一些奇怪的问题，比如CSS基线对齐问题...",
+          url: "/blog.html#2",
+        },
+        {
+          id: 3,
+          date: "February 23, 2024",
+          title: "测试",
+          tags: ["测试", "开发"],
+          description: "这是测试文章",
+          url: "blog.html#3",
         },
       ];
-      articles.forEach((article) => {
+
+      // 当前文章列表，只取前两个，分页
+      let currentArticles = articles.slice(0, 2);
+
+      currentArticles.forEach((article) => {
         container.appendChild(createArticleItem(article));
       });
 
       // 搜索并展示匹配的文章
       function searchArticles(query) {
+        // 搜索结果不需要分页
+        document.querySelector(".pager-nav").style.display = "none";
+        // 过滤文章数组，匹配tag和description
+        // 如果查询为空，返回所有文章
+        let filteredArticles;
+        if (!query.trim()) {
+          filteredArticles = articles;
+          // 显示全文要分页
+          document.querySelector(".pager-nav").style.display = "flex";
+        } else {
+          filteredArticles = articles.filter((article) => {
+            // 支持大小写模糊搜索
+            const searchStr = query.toLowerCase();
+            return (
+              article.tags.some((tag) =>
+                // 支持检索tag和description
+                tag.toLowerCase().includes(searchStr)
+              ) || article.description.toLowerCase().includes(searchStr)
+            );
+          });
+        }
+
+        // 检查新的文章列表是否与上一次的文章列表相同
+        if (
+          JSON.stringify(filteredArticles) === JSON.stringify(currentArticles)
+        ) {
+          return;
+        } else if (filteredArticles.length === 0) {
+          // 如果为空则显示提示
+          console.log("没有找到匹配的文章");
+          container.innerHTML = "<li>没有找到匹配的文章</li>";
+          return;
+        }
+        // 更新当前文章列表
+        currentArticles = filteredArticles;
+        console.log("更新文章列表");
         // 清空当前的文章列表
         container.innerHTML = "";
-        // 过滤文章数组，匹配tag和description
-        const filteredArticles = articles.filter((article) => {
-          const searchStr = query.toLowerCase();
-          return (
-            article.tags.some((tag) => tag.toLowerCase().includes(searchStr)) ||
-            article.description.toLowerCase().includes(searchStr)
-          );
-        });
         // 将过滤后的文章添加到列表中
         filteredArticles.forEach((article) => {
           container.appendChild(createArticleItem(article));
@@ -356,6 +420,51 @@
         if (!isComposing) {
           const query = event.target.value;
           searchArticles(query);
+        }
+      });
+
+      // 分页相关
+      const prevButton = document.querySelector(
+        ".pager-nav button:first-child"
+      );
+      const nextButton = document.querySelector(".pager-nav button:last-child");
+
+      let currentPage = 1; // 当前页码
+      const perPage = 2; // 每页的文章数量
+      const totalPages = Math.ceil(articles.length / perPage); // 总页数
+      // 获取并显示当前页的文章
+      function showCurrentPage() {
+        const start = (currentPage - 1) * perPage;
+        const end = start + perPage;
+        const currentArticles = articles.slice(start, end);
+        document.querySelector(
+          ".pager-nav span"
+        ).textContent = `${currentPage} of ${totalPages}`;
+        container.innerHTML = "";
+        currentArticles.forEach((article) => {
+          container.appendChild(createArticleItem(article));
+        });
+      }
+
+      prevButton.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          showCurrentPage();
+          nextButton.style.opacity = 1;
+          prevButton.style.opacity = currentPage === 1 ? 0.5 : 1;
+        } else {
+          prevButton.style.opacity = 0.5;
+        }
+      });
+
+      nextButton.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          showCurrentPage();
+          prevButton.style.opacity = 1;
+          nextButton.style.opacity = currentPage === totalPages ? 0.5 : 1;
+        } else {
+          nextButton.style.opacity = 0.5;
         }
       });
     </script>

@@ -58,6 +58,9 @@
       #top:hover {
         background-color: rgb(31 41 55);
       }
+      #md {
+        font-size: 1.125rem;
+      }
       #md p {
         font-size: 1.25rem;
         line-height: 1.75;
@@ -162,11 +165,11 @@
       <main style="margin: 0.75rem">
         <header style="padding: 4rem 0">
           <div class="tag">
-            <span>#js</span>
-            <span>#effect</span>
+            <span>#···</span>
+            <span>#···</span>
           </div>
           <h1 style="font-size: 54px; line-height: 64px; margin: 1rem 0">
-            js实现打字机效果
+            ··········
           </h1>
           <dl>
             <dd
@@ -177,7 +180,7 @@
                 margin: 0;
               "
             >
-              <time datetime="2024-02-22">February 22, 2024</time>
+              <time datetime="2024-02-22">··········</time>
               <span style="margin: 0 0.5rem"> • </span>
               <span>5 mins read</span>
               <span style="margin: 0 0.5rem"> • </span>
@@ -247,11 +250,65 @@
         smartLists: true,
         smartypants: false,
       }); //基本设置
+
+      // 获取当前哈希
+      const hash = window.location.hash.substring(1);
+      if (!hash) {
+        window.location.href = "/blog-all.html";
+      }
+      const article = [
+        {
+          id: 1,
+          date: "February 22, 2024",
+          title: "打字机效果",
+          tags: ["js", "effect"],
+          description:
+            "打字机效果，就是文字一个一个的显示出来，就像打字机一样，这种效果...",
+          url: "/blog.html#1",
+        },
+        {
+          id: 2,
+          date: "February 23, 2024",
+          title: "CSS基线问题",
+          tags: ["CSS", "开发"],
+          description:
+            "前端开发经常会遇到一些奇怪的问题，比如CSS基线对齐问题...",
+          url: "/blog.html#2",
+        },
+        {
+          id: 3,
+          date: "February 23, 2024",
+          title: "测试",
+          tags: ["测试", "开发"],
+          description: "这是测试文章",
+          url: "blog.html#3",
+        },
+      ][hash - 1];
+
+      // 设置header
+      const htmlTemplate = `
+        <div class="tag">
+          ${article.tags.map((tag) => `<span>#${tag}</span>`).join("")}
+        </div>
+        <h1 style="font-size: 54px; line-height: 64px; margin: 1rem 0">
+          ${article.title}
+        </h1>
+        <dl>
+          <dd style="font-weight: 500; display: flex; color: rgb(107 114 128); margin: 0;">
+            <time>${article.date}</time>
+            <span style="margin: 0 0.5rem"> • </span>
+            <span>5 mins read</span>
+            <span style="margin: 0 0.5rem"> • </span>
+            <span>30 views</span>
+          </dd>
+        </dl>
+        `;
+      document.querySelector("main header").innerHTML = htmlTemplate;
       // 使用 fetch API 获取远程 Markdown 文件内容
-      fetch("/articles/1.md")
+      fetch(`/articles/${hash}.md`)
         .then((response) => {
           if (!response.ok) {
-            throw new Error("Network response was not ok");
+            return "# 找不到此文章";
           }
           return response.text();
         })
@@ -277,8 +334,11 @@
             error
           );
         });
-      // 如果屏幕宽度大于文章宽度，则显示返回顶部按钮
-      if (window.innerWidth > document.querySelector("#app").offsetWidth) {
+      // 如果可视宽度大于文章宽度，则显示返回顶部按钮，50是按钮的预留宽度
+      if (
+        document.body.offsetWidth >
+        document.querySelector("#app").offsetWidth + 50
+      ) {
         const backTopElement = document.querySelector("#top");
         /**
          * 防抖函数
