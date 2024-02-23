@@ -70,4 +70,23 @@ function rotateCard(element) {
   }
   return move
 }
-export { typewriter, rotateCard };
+/**
+ * 防抖函数
+ * @param {Function} func 
+ * @param {Number} delay 
+ * @returns 
+ */
+function debounce(func, delay) {
+  let timer;
+  return function () {
+    const context = this;
+    const args = arguments;
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      func.apply(context, args); 
+    }, delay);
+  };
+}
+export { typewriter, rotateCard, debounce};
