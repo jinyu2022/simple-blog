@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简单的博客</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/main.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* 防止横向滚动条 */
+        font-family: "Outfit", sans-serif;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .blog-header {
+        padding-top: 1.5rem;
+        padding-bottom: 3rem;
+      }
+      .blog-title h1 {
+        margin: 0;
+        line-height: 3.5rem;
+        font-size: 3.75rem;
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+      .blog-title p {
+        font-size: 1.125rem;
+        line-height: 2rem;
+        color: rgb(107 114 128);
+      }
+      .blog-search {
+        position: relative;
+        margin-top: 1.5rem;
+        max-width: 32rem;
+        display: flex;
+        align-items: center;
+      }
+      .blog-search input {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        border: 1px solid #d1d5db;
+      }
+      .blog-search input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px,
+          rgb(99, 102, 241) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+      }
+      .blog-search svg {
+        height: 1.25rem;
+        width: 1.25rem;
+        position: absolute;
+        right: 1rem;
+        color: rgb(156 163 175);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" style="max-width: 64rem; margin: 0 auto">
+      <header class="header">
+        <div class="header-container">
+          <div class="logo">
+            <a href="">
+              <img src="./assets/logo.jpg" alt="logo" width="45" height="45" />
+            </a>
+          </div>
+          <div class="nav-header">
+            <div class="top-nav">
+              <span
+                id="cross"
+                onclick="document.querySelector('.top-nav').style.transform=null"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
+              <a href="/blog-all.html">
+                <span style="background-color: rgb(229 231 235)">Blog</span>
+              </a>
+              <a href="">
+                <span>Gallery</span>
+              </a>
+              <a href="">
+                <span>Snippets</span>
+              </a>
+              <a href="">
+                <span>Projects</span>
+              </a>
+              <a href="/about.html">
+                <span>About</span>
+              </a>
+              <a href="">
+                <span>Friends</span>
+              </a>
+            </div>
+            <div class="side-nav">
+              <a href="#">
+                <span
+                  style="
+                    background-image: url(./assets/analysis.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  "
+                >
+                  &nbsp; &nbsp;
+                  <!-- 这种方式也许不如直接用svg标签 -->
+                </span>
+              </a>
+              <span
+                style="
+                  background-image: url(./assets/moon.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
+              >
+                &nbsp; &nbsp; &nbsp;
+              </span>
+
+              <span
+                id="setting"
+                style="
+                  background-image: url(./assets/setting.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
+                onclick="document.querySelector('.top-nav').style.transform='translateX(0)'"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="placeholder"></div>
+      <main style="margin: 0.75rem">
+        <div class="blog-container">
+          <div class="blog-header">
+            <div class="blog-title">
+              <h1>All Posts</h1>
+              <p>
+                我写的大多是关于网络开发、技术相关的文章，有时还写我的个人生活。使用下面的搜索按标题进行筛选。
+              </p>
+            </div>
+            <div class="blog-search">
+              <input type="text" placeholder="Search" id="search" />
+              <svg
+                class="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div class="blog-list">
+            <ul>
+              <!-- <li>
+                  <article class="article-container">
+                    <div>
+                      <div class="date">February 22, 2024</div>
+                    </div>
+                    <div style="margin-top: 0.5rem">
+                      <h2 class="title">打字机效果</h2>
+                      <div class="tag">
+                        <span>#js</span>
+                        <span>#effect</span>
+                      </div>
+                      <div class="description">
+                        打字机效果，就是文字一个一个的显示出来，就像打字机一样，这种效果...
+                      </div>
+                      <div class="read-more">
+                        <a href="/blog.html">Read more</a>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article class="article-container">
+                    <div>
+                      <div class="date">February 22, 2024</div>
+                    </div>
+                    <div style="margin-top: 0.5rem">
+                      <h2 class="title">效果</h2>
+                      <div class="tag">
+                        <span>#j</span>
+                        <span>#efect</span>
+                      </div>
+                      <div class="description">
+                        打字机效果，就是文字显示出来，就像打字机一样，这种效果...
+                      </div>
+                      <div class="read-more">
+                        <a href="/blog.html">Read more</a>
+                      </div>
+                    </div>
+                  </article>
+                </li> -->
+            </ul>
+          </div>
+        </div>
+      </main>
+      <footer style="padding: 0 0.75rem">
+        <div class="footer-container">
+          <div style="display: flex">
+            <span style="margin-right: 4px">Built with</span>
+            <div>
+              <img src="./assets/html5.svg" alt="html5" width="20px" />
+              <img src="./assets/css3.svg" alt="css3" width="20" />
+              <img src="./assets/javascript.svg" alt="javascript" width="20" />
+            </div>
+          </div>
+          <div>Copyright © 2024</div>
+        </div>
+      </footer>
+    </div>
+    <script>
+      // 创建文章函数
+      // function createArticleItem(article) {
+      //   const articleContainer = document.createElement("article");
+      //   articleContainer.className = "article-container";
+      //   const dateElement = document.createElement("div");
+      //   dateElement.className = "date";
+      //   dateElement.textContent = article.date;
+      //   const titleElement = document.createElement("h2");
+      //   titleElement.className = "title";
+      //   titleElement.textContent = article.title;
+      //   const tagElement = document.createElement("div");
+      //   tagElement.className = "tag";
+      //   tagElement.append(
+      //     ...article.tags.map((tag) => {
+      //       const spanElement = document.createElement("span");
+      //       spanElement.textContent = `#${tag}`;
+      //       return spanElement;
+      //     })
+      //   );
+      //   const descriptionElement = document.createElement("div");
+      //   descriptionElement.className = "description";
+      //   descriptionElement.textContent = article.description;
+      //   const readMoreElement = document.createElement("div");
+      //   readMoreElement.className = "read-more";
+      //   const linkElement = document.createElement("a");
+      //   linkElement.href = "/blog.html";
+      //   linkElement.textContent = "Read more";
+      //   readMoreElement.appendChild(linkElement);
+      //   // 按顺序添加所有子元素
+      //   articleContainer.appendChild(dateElement);
+      //   const contentDiv = document.createElement("div");
+      //   contentDiv.style.marginTop = "0.5rem"; // 添加内联样式
+      //   contentDiv.append(
+      //     titleElement,
+      //     tagElement,
+      //     descriptionElement,
+      //     readMoreElement
+      //   );
+      //   articleContainer.appendChild(contentDiv);
+      //   const listItem = document.createElement("li");
+      //   listItem.appendChild(articleContainer);
+      //   return listItem;
+      // }
+      function createArticleItem(article) {
+        const articleTemplate = `
+        <li>
+          <article class="article-container">
+            <div>
+              <div class="date">${article.date}</div>
+            </div>
+            <div style="margin-top: 0.5rem">
+              <h2 class="title">${article.title}</h2>
+              <div class="tag">
+                ${article.tags.map((tag) => `<span>#${tag}</span>`).join("")}
+              </div>
+              <div class="description">
+                ${article.description}
+              </div>
+              <div class="read-more">
+                <a href="/blog.html">Read more</a>
+              </div>
+            </div>
+          </article>
+        </li>
+      `;
+        const range = document.createRange();
+        const fragment = range.createContextualFragment(articleTemplate);
+        return fragment;
+      }
+      /**文章列表容器 */
+      const container = document.querySelector(".blog-list ul");
+      // 通过请求获取文章列表
+      const articles = [
+        {
+          date: "February 22, 2024",
+          title: "打字机效果",
+          tags: ["js", "effect"],
+          description:
+            "打字机效果，就是文字一个一个的显示出来，就像打字机一样，这种效果...",
+        },
+        {
+          date: "February 22, 2024",
+          title: "效果",
+          tags: ["j", "efect"],
+          description:
+            "打字机效果，就是文字显示出来，就像打字机一样，这种效果...",
+        },
+      ];
+      articles.forEach((article) => {
+        container.appendChild(createArticleItem(article));
+      });
+
+      // 搜索并展示匹配的文章
+      function searchArticles(query) {
+        // 清空当前的文章列表
+        container.innerHTML = "";
+        // 过滤文章数组，匹配tag和description
+        const filteredArticles = articles.filter((article) => {
+          const searchStr = query.toLowerCase();
+          return (
+            article.tags.some((tag) => tag.toLowerCase().includes(searchStr)) ||
+            article.description.toLowerCase().includes(searchStr)
+          );
+        });
+        // 将过滤后的文章添加到列表中
+        filteredArticles.forEach((article) => {
+          container.appendChild(createArticleItem(article));
+        });
+      }
+      // 监听输入事件
+      const searchInput = document.querySelector("#search");
+      let isComposing = false; // 标记是否正在输入拼音
+      searchInput.addEventListener("compositionstart", () => {
+        isComposing = true;
+      });
+      searchInput.addEventListener("compositionend", (event) => {
+        isComposing = false;
+        const query = event.target.value;
+        searchArticles(query);
+      });
+      searchInput.addEventListener("input", (event) => {
+        if (!isComposing) {
+          const query = event.target.value;
+          searchArticles(query);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简单的博客</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/main.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/atom-one-dark.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* 防止横向滚动条 */
+        font-family: "Outfit", sans-serif;
+      }
+      .blog-header {
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #f0f0f0;
+      }
+      .blog-title h1 {
+        margin: 0;
+        line-height: 3.5rem;
+        font-size: 3.75rem;
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+      .blog-title p {
+        font-size: 1.125rem;
+        line-height: 2rem;
+        color: rgb(107 114 128);
+      }
+      #card {
+        display: block;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: Consolas, JetBrains Mono, monospace;
+      }
+      code {
+        margin: 0 0.25rem;
+        border-radius: 0.25em;
+        padding: 0 0.5rem;
+        font-weight: 500;
+        background-color: #dfdcdcc4;
+        color: #222426;
+      }
+      @media (min-width: 768px) {
+        .about-me {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+        }
+        #md {
+          padding-left: 2.5rem;
+        }
+      }
+      @media (max-width: 767px) {
+        .about-me {
+          display: flex;
+          flex-direction: column;
+        }
+        .card-content {
+          display: none;
+        }
+      }
+
+      #md p {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        color: #374151;
+      }
+      #md strong {
+        color: #4b5563;
+      }
+      #md a {
+        color: #6366f1;
+        text-decoration: underline;
+        font-weight: 500;
+      }
+      #md {
+        h2 {
+          font-weight: 700;
+          font-size: 1.875em;
+          margin-top: 3.5rem;
+          margin-bottom: 2rem;
+        }
+
+        h4 {
+          font-size: 1.25rem;
+          font-weight: 600;
+        }
+
+        ul {
+          list-style-type: disc;
+          margin-bottom: 2.375rem;
+          font-size: 1.125rem;
+        }
+
+        li::marker {
+          color: #d1d5db;
+        }
+        li {
+          color: #374151;
+          margin-bottom: 0.75rem;
+          line-height: 2rem;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        table th,
+        table td {
+          border-bottom: 1px solid #e5e7eb;
+          padding: 0.75rem;
+          line-height: 1.5;
+        }
+        blockquote {
+          background: #ebebeb;
+          color: #3d3b3b;
+          border-top: 1px solid transparent;
+          border-bottom: 1px solid transparent;
+          border-left: 0.25rem solid #6f6868;
+          padding-right: 8px;
+          padding-left: 1em;
+          margin: 1.875rem 0;
+          font-style: italic;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" style="max-width: 64rem; margin: 0 auto">
+      <header class="header">
+        <div class="header-container">
+          <div class="logo">
+            <a href="">
+              <img src="./assets/logo.jpg" alt="logo" width="45" height="45" />
+            </a>
+          </div>
+          <div class="nav-header">
+            <div class="top-nav">
+              <span
+                id="cross"
+                onclick="document.querySelector('.top-nav').style.transform=null"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
+              <a href="/blog-all.html">
+                <span>Blog</span>
+              </a>
+              <a href="">
+                <span>Gallery</span>
+              </a>
+              <a href="">
+                <span>Snippets</span>
+              </a>
+              <a href="">
+                <span>Projects</span>
+              </a>
+              <a href="/about.html">
+                <span style="background-color: #e5e7eb">About</span>
+              </a>
+              <a href="">
+                <span>Friends</span>
+              </a>
+            </div>
+            <div class="side-nav">
+              <a href="#">
+                <span
+                  style="
+                    background-image: url(./assets/analysis.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  "
+                >
+                  &nbsp; &nbsp;
+                  <!-- 这种方式也许不如直接用svg标签 -->
+                </span>
+              </a>
+              <span
+                style="
+                  background-image: url(./assets/moon.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
+              >
+                &nbsp; &nbsp; &nbsp;
+              </span>
+
+              <span
+                id="setting"
+                style="
+                  background-image: url(./assets/setting.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
+                onclick="document.querySelector('.top-nav').style.transform='translateX(0)'"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="placeholder"></div>
+      <main style="margin: 0.75rem">
+        <div class="blog-container">
+          <div class="blog-header">
+            <div class="blog-title">
+              <h1>About</h1>
+              <p>More about me and this blog</p>
+            </div>
+          </div>
+          <div class="about-me">
+            <div>
+              <div id="card">
+                <div class="card">
+                  <img
+                    src="./assets/104491469_p0_master1200.jpg"
+                    alt="自拍照"
+                    style="
+                      width: 100%;
+                      height: auto;
+                      object-fit: cover;
+                      aspect-ratio: 17 / 11;
+                    "
+                  />
+                  <div class="card-container">
+                    <i
+                      style="
+                        background-image: url(./assets/Spotify.svg);
+                        display: inline-block;
+                        height: 1.5rem;
+                        width: 1.5rem;
+                      "
+                    ></i>
+                    <span style="margin-left: 0.5rem"
+                      >Not Playing – Spotify</span
+                    >
+                  </div>
+                  <div class="card-content">
+                    <h3>Mengke</h3>
+                    <h5>Learner | Builder</h5>
+                    <div class="social-links">
+                      <div><i></i><span>FE Engineer @ MICO WORLD</span></div>
+                      <div><i></i><span>Peiping, China</span></div>
+                      <div><i></i><span>me@mengke.me</span></div>
+                      <div style="justify-content: space-between">
+                        <a href="https://github.com/mk965"
+                          ><span>gh/mk965</span></a
+                        >
+                        <span>|</span>
+                        <a href="https://github.com/mk965"
+                          ><span>in/mengke</span></a
+                        >
+                        <span>|</span>
+                        <a href="https://github.com/mk965"
+                          ><span>juejin/Mengke</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <span
+                    style="
+                      background-image: linear-gradient(
+                        to right,
+                        rgb(134, 239, 172),
+                        rgb(59, 130, 246),
+                        rgb(147, 51, 234)
+                      );
+                      height: 0.375rem;
+                    "
+                  >
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div id="md">123123</div>
+          </div>
+        </div>
+      </main>
+      <footer style="padding: 0 0.75rem">
+        <div class="footer-container">
+          <div style="display: flex">
+            <span style="margin-right: 4px">Built with</span>
+            <div>
+              <img src="./assets/html5.svg" alt="html5" width="20px" />
+              <img src="./assets/css3.svg" alt="css3" width="20" />
+              <img src="./assets/javascript.svg" alt="javascript" width="20" />
+            </div>
+          </div>
+          <div>Copyright © 2024</div>
+        </div>
+      </footer>
+    </div>
+    <script type="module">
+      import { rotateCard } from "./utils.js";
+      // 旋转卡片
+      // 窗口大于768px才能有动效
+      if (window.innerWidth > 768) {
+        const card = document.querySelector(".card");
+        const rotate = rotateCard(card);
+        // 对有放大效果的父元素添加事件委托，这样旋转的时候保证不会抖动
+        // 不然会出现旋转后鼠标不在元素上，然后元素还原，鼠标又在元素上循环旋转抖动的情况
+        document.querySelector("#card")?.addEventListener("mousemove", rotate);
+        document.querySelector("#card")?.addEventListener("mouseleave", () => {
+          card.style.transform = "rotateX(0deg) rotateY(0deg)";
+        });
+      }
+
+      // 使用 fetch API 获取远程 Markdown 文件内容
+      fetch("/articles/about.md")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.text();
+        })
+        .then((mdText) => {
+          // 使用 marked 解析 Markdown 文本
+          const htmlText = marked.parse(mdText);
+          // 找到要显示文章的md元素
+          const mdElement = document.getElementById("md");
+          // 如果找到了元素，将解析后的 HTML 内容设置为元素的innerHTML
+          if (mdElement) {
+            mdElement.innerHTML = htmlText;
+          } else {
+            console.error('Element with ID "app" not found.');
+          }
+
+          hljs.highlightAll();
+        })
+        .catch((error) => {
+          // 处理请求错误
+          console.error(
+            "There has been a problem with your fetch operation:",
+            error
+          );
+        });
+    </script>
+  </body>
+</html>

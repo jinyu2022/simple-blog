@@ -3,17 +3,18 @@
   justify-content: space-between;
   align-items: center;
   z-index: 10;
-padding: 0.75rem;
+  padding: 0.75rem;
 }
 
 .header-container::before {
   content: "";
   height: 100%;
-  width: 100vw; /* 100vw包括滚动条宽度，因此会出现横向滚动条 */
+  width: 100vw;
+  /* 100vw包括滚动条宽度，因此会出现横向滚动条 */
   /* border-right: 4px solid rgba(255, 255, 255, 0.8); 少的1vw用边框不上，看不出来 */
   backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.8); 
-  
+  background-color: rgba(255, 255, 255, 0.8);
+
   position: absolute;
   left: 50%;
   /* 将伪元素向右移动50% */
@@ -69,6 +70,11 @@ a>span:hover {
 
 a a {
   margin-left: 8px;
+}
+
+.side-nav {
+  cursor: pointer;
+  z-index: 10;
 }
 
 .hello {
@@ -158,8 +164,11 @@ a a {
   transition: transform 0.3s ease;
 }
 
-#card:hover {
-  transform: scale(1.1);
+@media (min-width: 768px) {
+  #card:hover {
+    transform: scale(1.1);
+  }
+
 }
 
 .card {

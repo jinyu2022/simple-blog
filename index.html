@@ -37,7 +37,7 @@
               >
                 &nbsp;&nbsp;&nbsp;
               </span>
-              <a href="">
+              <a href="/blog-all.html">
                 <span>Blog</span>
               </a>
               <a href="">
@@ -69,29 +69,26 @@
                   <!-- 这种方式也许不如直接用svg标签 -->
                 </span>
               </a>
-              <a href="#"><span
-                  style="
-                    background-image: url(./assets/moon.svg);
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                  "
-                >
-                  &nbsp; &nbsp; &nbsp;
-                </span>
-              </a>
-
-              <a href="#"><span
-                  id="setting"
-                  style="
-                    background-image: url(./assets/setting.svg);
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                  "
-                  onclick="document.querySelector('.top-nav').style.transform='translateX(0)'"
-                >
-                  &nbsp;&nbsp;&nbsp;
-                </span></a
+              <span
+                style="
+                  background-image: url(./assets/moon.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
               >
+                &nbsp; &nbsp; &nbsp;
+              </span>
+              <span
+                id="setting"
+                style="
+                  background-image: url(./assets/setting.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
+                onclick="document.querySelector('.top-nav').style.transform='translateX(0)'"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
             </div>
           </div>
         </div>
@@ -197,7 +194,12 @@
               <img
                 src="./assets/104491469_p0_master1200.jpg"
                 alt="自拍照"
-                style="width: 100%; height: 220px; object-fit: cover"
+                style="
+                  width: 100%;
+                  height: auto;
+                  object-fit: cover;
+                  aspect-ratio: 17 / 11;
+                "
               />
               <div class="card-container">
                 <i
