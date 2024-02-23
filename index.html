@@ -31,8 +31,8 @@
           <div class="nav-header">
             <div class="top-nav">
               <span
-              id="cross"
-              onclick="document.querySelector('.top-nav').style.transform=null"
+                id="cross"
+                onclick="document.querySelector('.top-nav').style.transform=null"
               >
                 &nbsp;&nbsp;&nbsp;
               </span>
@@ -56,7 +56,7 @@
               </a>
             </div>
             <div class="side-nav">
-              <a href="">
+              <a href="#">
                 <span
                   style="
                     background-image: url(./assets/analysis.svg);
@@ -68,33 +68,35 @@
                   <!-- 这种方式也许不如直接用svg标签 -->
                 </span>
               </a>
+              <a href="#"><span
+                  style="
+                    background-image: url(./assets/moon.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  "
+                >
+                  &nbsp; &nbsp; &nbsp;
+                </span>
+              </a>
 
-              <span
-                style="
-                  background-image: url(./assets/moon.svg);
-                  background-repeat: no-repeat;
-                  background-size: contain;
-                "
+              <a href="#"><span
+                  id="setting"
+                  style="
+                    background-image: url(./assets/setting.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  "
+                  onclick="document.querySelector('.top-nav').style.transform='translateX(0)'"
+                >
+                  &nbsp;&nbsp;&nbsp;
+                </span></a
               >
-                &nbsp; &nbsp; &nbsp;
-              </span>
-
-              <span
-                id="setting"
-                style="
-                  background-image: url(./assets/setting.svg);
-                  background-repeat: no-repeat;
-                  background-size: contain;
-                "
-                onclick="document.querySelector('.top-nav').style.transform='translateX(0)'"
-              >
-                &nbsp;&nbsp;&nbsp;
-              </span>
             </div>
           </div>
         </div>
       </header>
-      <main style="margin: 0.75rem;padding-top: 3rem;">
+      <div class="placeholder"></div>
+      <main style="margin: 0.75rem">
         <div class="hello">
           <div>
             <div class="howdy">
@@ -245,19 +247,19 @@
         <div>
           <article class="article-container">
             <div>
-              <div class="date">February 18, 2024</div>
+              <div class="date">February 22, 2024</div>
             </div>
             <div style="margin-top: 0.5rem">
-              <h2 class="title">Some Websites</h2>
+              <h2 class="title">打字机效果</h2>
               <div class="tag">
-                <span>#Websites</span>
-                <span>#Collect</span>
+                <span>#js</span>
+                <span>#effect</span>
               </div>
               <div class="description">
-                Collected some useful or interesting websites...
+                打字机效果，就是文字一个一个的显示出来，就像打字机一样，这种效果...
               </div>
               <div class="read-more">
-                <a href="">Read more</a>
+                <a href="/blog.html">Read more</a>
               </div>
             </div>
           </article>

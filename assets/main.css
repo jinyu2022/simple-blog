@@ -2,17 +2,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 12px 0.75rem;
   z-index: 10;
-
+padding: 0.75rem;
 }
 
-.logo {
+.header-container::before {
+  content: "";
+  height: 100%;
+  width: 100vw;
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.8);
+  
+  position: absolute;
+  left: 50%;
+  /* 将伪元素向右移动50% */
+  right: 50%;
+  /* 将伪元素向左移动50% */
+  margin-left: -50vw;
+}
+
+.logo,
+.placeholder {
   height: 45px;
   border-radius: 50%;
   overflow: hidden;
+}
+
+.placeholder {
+  padding: 0.75rem;
 }
 
 a {
@@ -250,6 +267,10 @@ a a {
     overflow-x: hidden; */
   }
 
+  .placeholder {
+    display: none;
+  }
+
   .howdy {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -265,7 +286,8 @@ a a {
     /* 左边两列合并，宽度是右边一列的两倍 */
   }
 
-  #setting {
+  #setting,
+  #cross {
     display: none;
   }
 
@@ -282,12 +304,13 @@ a a {
 
 
 @media (max-width: 767px) {
-  .header-container{
+  .header-container {
     position: fixed;
     box-sizing: border-box;
     width: 100%;
     top: 0;
   }
+
   .top-nav {
     display: flex;
     flex-direction: column;

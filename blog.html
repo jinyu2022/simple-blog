@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简单的博客</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/atom-one-dark.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Outfit", sans-serif;
+      }
+      /* main {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      } */
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: Consolas, JetBrains Mono, monospace;
+      }
+      code {
+        margin: 0 0.25rem;
+        border-radius: 0.25em;
+        padding: 0 0.5rem;
+        font-weight: 500;
+        background-color: #dfdcdcc4;
+      }
+      #md p {
+        font-size: 1.25rem;
+        line-height: 1.75;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" style="max-width: 64rem; margin: 0 auto">
+      <header class="header">
+        <div class="header-container">
+          <div class="logo">
+            <a href="">
+              <img src="./assets/logo.jpg" alt="logo" width="45" height="45" />
+            </a>
+          </div>
+          <div class="nav-header">
+            <div class="top-nav">
+              <span
+                id="cross"
+                onclick="document.querySelector('.top-nav').style.transform=null"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
+              <a href="">
+                <span>Blog</span>
+              </a>
+              <a href="">
+                <span>Gallery</span>
+              </a>
+              <a href="">
+                <span>Snippets</span>
+              </a>
+              <a href="">
+                <span>Projects</span>
+              </a>
+              <a href="">
+                <span>About</span>
+              </a>
+              <a href="">
+                <span>Friends</span>
+              </a>
+            </div>
+            <div class="side-nav">
+              <a href="">
+                <span
+                  style="
+                    background-image: url(./assets/analysis.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    cursor: pointer;
+                  "
+                >
+                  &nbsp; &nbsp;
+                  <!-- 这种方式也许不如直接用svg标签 -->
+                </span>
+              </a>
+              <a href="#"><span
+                  style="
+                    background-image: url(./assets/moon.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  "
+                >
+                  &nbsp; &nbsp; &nbsp;
+                </span>
+              </a>
+              <a href="#"><span
+                  id="setting"
+                  style="
+                    background-image: url(./assets/setting.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  "
+                  onclick="document.querySelector('.top-nav').style.transform='translateX(0)'"
+                >
+                  &nbsp;&nbsp;&nbsp;
+                </span></a
+              >
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="placeholder"></div>
+      <main style="margin: 0.75rem">
+        <header style="padding: 4rem 0">
+          <div class="tag">
+            <span>#js</span>
+            <span>#effect</span>
+          </div>
+          <h1 style="font-size: 54px; line-height: 64px; margin: 1rem 0">
+            js实现打字机效果
+          </h1>
+          <dl>
+            <dd
+              style="
+                font-weight: 500;
+                display: flex;
+                color: rgb(107 114 128);
+                margin: 0;
+              "
+            >
+              <time datetime="2024-02-22">February 22, 2024</time>
+              <span style="margin: 0 0.5rem"> • </span>
+              <span>5 mins read</span>
+              <span style="margin: 0 0.5rem"> • </span>
+              <span>30 views</span>
+            </dd>
+          </dl>
+        </header>
+        <div>
+          <img
+            style="
+              border-radius: 10px;
+              /* width: 1160px; */
+              max-width: 100%;
+              object-fit: contain;
+              height: auto;
+              /* aspect-ratio: auto 1160 / 750;
+              height: 750px; */
+              /* margin: 0 -130px; */
+            "
+            alt="server.jpg"
+            loading="lazy"
+            width="1160"
+            height="750"
+            decoding="async"
+            data-nimg="1"
+            style="color: transparent"
+            src="./assets/85970602_p0_master1200.jpg"
+          />
+        </div>
+        <article id="md"></article>
+      </main>
+      <footer style="padding: 0 0.75rem">
+        <div class="footer-container">
+          <div style="display: flex">
+            <span style="margin-right: 4px">Built with</span>
+            <div>
+              <img src="./assets/html5.svg" alt="html5" width="20px" />
+              <img src="./assets/css3.svg" alt="css3" width="20" />
+              <img src="./assets/javascript.svg" alt="javascript" width="20" />
+            </div>
+          </div>
+          <div>Copyright © 2024</div>
+        </div>
+      </footer>
+    </div>
+    <script>
+      const rendererMD = new marked.Renderer();
+      let code;
+      rendererMD.html = function (html) {
+        // 判断是否是script标签
+        if (html.startsWith("<script")) {
+          // 获取script标签中的JavaScript代码
+          code = html.replace("<script>", "").replace("<\/script>", "");
+          // 返回空字符串，表示不输出任何内容
+          return "";
+        }
+        // 其他HTML标签保持原样
+        return html;
+      };
+      marked.setOptions({
+        renderer: rendererMD,
+        gfm: true,
+        tables: true,
+        breaks: false,
+        pedantic: false,
+        sanitize: false,
+        smartLists: true,
+        smartypants: false,
+      }); //基本设置
+      // 使用 fetch API 获取远程 Markdown 文件内容
+      fetch("/articles/1.md")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.text();
+        })
+        .then((mdText) => {
+          // 使用 marked 解析 Markdown 文本
+          const htmlText = marked.parse(mdText);
+          // 找到具有特定 ID 的 HTML 元素
+          const appElement = document.getElementById("md");
+          // 如果找到了元素，将解析后的 HTML 内容设置为元素的innerHTML
+          if (appElement) {
+            appElement.innerHTML = htmlText;
+            eval(code); // 执行script标签中的JavaScript代码
+          } else {
+            console.error('Element with ID "app" not found.');
+          }
+
+          hljs.highlightAll();
+        })
+        .catch((error) => {
+          // 处理请求错误
+          console.error(
+            "There has been a problem with your fetch operation:",
+            error
+          );
+        });
+    </script>
+  </body>
+</html>

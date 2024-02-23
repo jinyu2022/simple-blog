@@ -1,3 +1,4 @@
+'use strict';
 /**动态打字机效果
  * @param {HTMLElement} element 要显示文字的元素
  * @param {String} txt 要显示的文字
