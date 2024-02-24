@@ -18,6 +18,11 @@
         overflow-x: hidden; /* 防止横向滚动条 */
         font-family: "Outfit", sans-serif;
       }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
     </style>
   </head>
   <body>
@@ -25,7 +30,7 @@
       <header class="header">
         <div class="header-container">
           <div class="logo">
-            <a href="">
+            <a href="/index.html">
               <img src="./assets/logo.jpg" alt="logo" width="45" height="45" />
             </a>
           </div>
@@ -247,25 +252,41 @@
             </div>
           </div>
         </div>
-        <div>
-          <article class="article-container">
-            <div>
-              <div class="date">February 22, 2024</div>
-            </div>
-            <div style="margin-top: 0.5rem">
-              <h2 class="title">打字机效果</h2>
-              <div class="tag">
-                <span>#js</span>
-                <span>#effect</span>
-              </div>
-              <div class="description">
-                打字机效果，就是文字一个一个的显示出来，就像打字机一样，这种效果...
-              </div>
-              <div class="read-more">
-                <a href="/blog.html">Read more</a>
-              </div>
-            </div>
-          </article>
+        <div class="blog-list">
+          <ul id="articleList">
+            <li>
+              <article class="article-container">
+                <div>
+                  <div class="date">February 22, 2024</div>
+                </div>
+                <div style="margin-top: 0.5rem">
+                  <h2 class="title">打字机效果</h2>
+                  <div class="tag">
+                    <span>#js</span>
+                    <span>#effect</span>
+                  </div>
+                  <div class="description">
+                    打字机效果，就是文字一个一个的显示出来，就像打字机一样，这种效果...
+                  </div>
+                  <div class="read-more">
+                    <a href="/blog.html">Read more</a>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+        <div style="text-align: right;font-weight: 500">
+          <a href="/blog-all.html">
+            <span
+              style="
+                color: rgb(99, 102, 241);
+                cursor: pointer;
+              "
+            >
+            All Posts →
+            </span>
+          </a>
         </div>
       </main>
       <footer style="padding: 0 0.75rem">
@@ -330,6 +351,83 @@
       document.querySelector("#card")?.addEventListener("mousemove", rotate);
       document.querySelector("#card")?.addEventListener("mouseleave", () => {
         card.style.transform = "rotateX(0deg) rotateY(0deg)";
+      });
+
+      // 显示文章列表
+
+      /** 生成文章列表
+       * @param {object[]} article 文章列表
+       */
+      function createArticleItem(article) {
+        const articleTemplate = `
+          <li>
+            <article class="article-container">
+              <div>
+                <time class="date">${article.date}</time>
+              </div>
+              <div style="margin-top: 0.5rem">
+                <h2 class="title">${article.title}</h2>
+                <div class="tag">
+                  ${article.tags.map((tag) => `<span>#${tag}</span>`).join("")}
+                </div>
+                <div class="description">
+                  ${article.description}
+                </div>
+                <div class="read-more">
+                  <a href="${article.url}">Read more</a>
+                </div>
+              </div>
+            </article>
+          </li>
+        `;
+        const range = document.createRange();
+        const fragment = range.createContextualFragment(articleTemplate);
+        return fragment;
+      }
+
+      // 通过请求获取文章列表
+      const articles = [
+        {
+          id: 1,
+          date: "February 22, 2024",
+          title: "打字机效果",
+          tags: ["js", "effect"],
+          description:
+            "打字机效果，就是文字一个一个的显示出来，就像打字机一样，这种效果...",
+          url: "/blog.html#1",
+        },
+        {
+          id: 2,
+          date: "February 23, 2024",
+          title: "CSS基线问题",
+          tags: ["CSS", "开发"],
+          description:
+            "前端开发经常会遇到一些奇怪的问题，比如CSS基线对齐问题...",
+          url: "/blog.html#2",
+        },
+        {
+          id: 3,
+          date: "February 23, 2024",
+          title: "协程安全性",
+          tags: ["js","协程", "并发"],
+          description: "协程的安全性...",
+          url: "/blog.html#3",
+        },
+        {
+          id: 4,
+          date: "February 23, 2024",
+          title: "测试",
+          tags: ["测试", "开发"],
+          description: "这是测试文章",
+          url: "blog.html#3",
+        }
+      ];
+
+      /**文章列表容器 */
+      const container = document.querySelector(".blog-list ul");
+
+      articles.forEach((article) => {
+        container.appendChild(createArticleItem(article));
       });
     </script>
   </body>
