@@ -41,6 +41,14 @@
         font-weight: 500;
         background-color: #dfdcdcc4;
       }
+      img,
+      svg {
+        border-radius: 10px;
+        /* width: 1160px; */
+        max-width: 100%;
+        object-fit: contain;
+        height: auto;
+      }
       #top {
         display: none;
         position: fixed;
@@ -190,16 +198,6 @@
         </header>
         <div>
           <img
-            style="
-              border-radius: 10px;
-              /* width: 1160px; */
-              max-width: 100%;
-              object-fit: contain;
-              height: auto;
-              /* aspect-ratio: auto 1160 / 750;
-              height: 750px; */
-              /* margin: 0 -130px; */
-            "
             alt="server.jpg"
             loading="lazy"
             width="1160"
@@ -279,7 +277,7 @@
           id: 3,
           date: "February 23, 2024",
           title: "协程安全性",
-          tags: ["js","协程", "并发"],
+          tags: ["js", "协程", "并发"],
           description: "协程的安全性...",
           url: "/blog.html#3",
         },
@@ -332,8 +330,10 @@
           } else {
             console.error('Element with ID "app" not found.');
           }
-
+          // 使用 highlight.js 高亮代码
           hljs.highlightAll();
+          // 点击图片放大
+          zoomImage();
         })
         .catch((error) => {
           // 处理请求错误
@@ -388,5 +388,6 @@
         document.querySelector("#top").style.display = "none";
       }
     </script>
+    <script src="./zoom-image.js"></script>
   </body>
 </html>

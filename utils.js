@@ -85,8 +85,8 @@ function debounce(func, delay) {
       clearTimeout(timer);
     }
     timer = setTimeout(function () {
-      func.apply(context, args); 
+      func.apply(context, args);
     }, delay);
   };
 }
-export { typewriter, rotateCard, debounce};
+export { typewriter, rotateCard, debounce };
