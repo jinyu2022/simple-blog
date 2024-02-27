@@ -225,6 +225,22 @@
         </div>
       </footer>
     </div>
+    <script
+      src="https://giscus.app/client.js"
+      data-repo="jinyu2022/simple-blog"
+      data-repo-id="R_kgDOLVt_uA"
+      data-category="评论"
+      data-category-id="DIC_kwDOLVt_uM4Cdhzb"
+      data-mapping="url"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async
+    ></script>
     <script>
       const rendererMD = new marked.Renderer();
       let code;
@@ -250,9 +266,10 @@
         smartypants: false,
       }); //基本设置
 
-      // 获取当前哈希
-      const hash = window.location.hash.substring(1);
-      if (!hash) {
+      // 获取当前文章的ID，存储在URL的查询参数中
+      const params = new URLSearchParams(window.location.search);
+      const postID = params.get("postID");
+      if (!postID) {
         window.location.href = "/blog-all.html";
       }
       const article = [
@@ -283,7 +300,7 @@
           url: "/blog.html#3",
         },
         {
-          id:4,
+          id: 4,
           date: "February 23, 2024",
           title: "一个markdown编辑器",
           tags: ["js", "开发"],
@@ -298,7 +315,7 @@
           description: "这是测试文章",
           url: "blog.html#3",
         },
-      ][hash - 1];
+      ][postID - 1];
 
       // 设置header
       const htmlTemplate = `
@@ -320,7 +337,7 @@
         `;
       document.querySelector("main header").innerHTML = htmlTemplate;
       // 使用 fetch API 获取远程 Markdown 文件内容
-      fetch(`/articles/${hash}.md`)
+      fetch(`/articles/${postID}.md`)
         .then((response) => {
           if (!response.ok) {
             return "# 找不到此文章";
@@ -398,22 +415,5 @@
       }
     </script>
     <script src="./zoom-image.js"></script>
-    <script
-      src="https://giscus.app/client.js"
-      data-repo="jinyu2022/simple-blog"
-      data-repo-id="R_kgDOLVt_uA"
-      data-category="[评论]"
-      data-category-id="[在此输入分类 ID]"
-      data-mapping="url"
-      data-strict="0"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="top"
-      data-theme="preferred_color_scheme"
-      data-lang="zh-CN"
-      data-loading="lazy"
-      crossorigin="anonymous"
-      async
-    ></script>
   </body>
 </html>
