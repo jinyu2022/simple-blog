@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简单的博客</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/main.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* 防止横向滚动条 */
+        font-family: "Outfit", sans-serif;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .blog-header {
+        padding-top: 1.5rem;
+        padding-bottom: 3rem;
+      }
+      .blog-title h1 {
+        margin: 0;
+        line-height: 3.5rem;
+        font-size: 3.75rem;
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+      .blog-title p {
+        font-size: 1.125rem;
+        line-height: 2rem;
+        color: rgb(107 114 128);
+      }
+      .project-list {
+        border-top: 1px solid rgb(229, 231, 235);
+      }
+      .project-list h3 {
+        font-size: 1.875rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .project-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .project-item {
+        height: 492px;
+        width: 342px;
+        padding: 1rem;
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        background-color: azure;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+          rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.12) 0px 8px 30px 0px;
+      }
+
+      .project-image img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+      }
+
+      .project-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" style="max-width: 64rem; margin: 0 auto">
+      <header class="header">
+        <div class="header-container">
+          <div class="logo">
+            <a href="/index.html">
+              <img src="./assets/logo.jpg" alt="logo" width="45" height="45" />
+            </a>
+          </div>
+          <div class="nav-header">
+            <div class="top-nav">
+              <span
+                id="cross"
+                onclick="document.querySelector('.top-nav').style.transform=null"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
+              <a href="/blog-all.html">
+                <span>Blog</span>
+              </a>
+              <a href="">
+                <span>Gallery</span>
+              </a>
+              <a href="">
+                <span>Snippets</span>
+              </a>
+              <a href="/projects.html">
+                <span style="background-color: rgb(229 231 235)">Projects</span>
+              </a>
+              <a href="/about.html">
+                <span>About</span>
+              </a>
+              <a href="">
+                <span>Friends</span>
+              </a>
+            </div>
+            <div class="side-nav">
+              <a href="#">
+                <span
+                  style="
+                    background-image: url(./assets/analysis.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  "
+                >
+                  &nbsp; &nbsp;
+                  <!-- 这种方式也许不如直接用svg标签 -->
+                </span>
+              </a>
+              <span
+                style="
+                  background-image: url(./assets/moon.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
+              >
+                &nbsp; &nbsp; &nbsp;
+              </span>
+
+              <span
+                id="setting"
+                style="
+                  background-image: url(./assets/setting.svg);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                "
+                onclick="document.querySelector('.top-nav').style.transform='translateX(0)'"
+              >
+                &nbsp;&nbsp;&nbsp;
+              </span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="placeholder"></div>
+      <main style="margin: 0.75rem">
+        <div class="blog-container">
+          <div class="blog-header">
+            <div class="blog-title">
+              <h1>Projects</h1>
+              <p>
+                My open-source side projects and stuff that I built with my
+                colleagues at work
+              </p>
+            </div>
+          </div>
+          <div class="project-list">
+            <h3>Work</h3>
+            <div class="project-container">
+              <div class="project-item">
+                <div class="project-card">
+                  <div class="project-image">
+                    <img
+                      src="https://tc.mwm.moe/i/1/2023/10/28/653c76d30a5f7.webp"
+                      alt="Project Image"
+                    />
+                  </div>
+                  <div class="project-details">
+                    <h2>23123</h2>
+                    <p>
+                      An open-source Alpha video player within the company that
+                      can play Alpha videos on the web.
+                    </p>
+                    <a href="">Learn more →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-item">
+                <div class="project-card"></div>
+              </div>
+              <div class="project-item">
+                <div class="project-card"></div>
+              </div>
+              <div class="project-item">
+                <div class="project-card"></div>
+              </div>
+              <div class="project-item">
+                <div class="project-card"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer style="padding: 0 0.75rem">
+        <div class="footer-container">
+          <div style="display: flex">
+            <span style="margin-right: 4px">Built with</span>
+            <div>
+              <img src="./assets/html5.svg" alt="html5" width="20px" />
+              <img src="./assets/css3.svg" alt="css3" width="20" />
+              <img src="./assets/javascript.svg" alt="javascript" width="20" />
+            </div>
+          </div>
+          <div>Copyright © 2024</div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

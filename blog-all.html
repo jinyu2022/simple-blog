@@ -95,7 +95,7 @@
               <a href="">
                 <span>Snippets</span>
               </a>
-              <a href="">
+              <a href="/projects.html">
                 <span>Projects</span>
               </a>
               <a href="/about.html">
@@ -173,46 +173,7 @@
           </div>
           <div class="blog-list">
             <ul>
-              <!-- <li>
-                  <article class="article-container">
-                    <div>
-                      <div class="date">February 22, 2024</div>
-                    </div>
-                    <div style="margin-top: 0.5rem">
-                      <h2 class="title">打字机效果</h2>
-                      <div class="tag">
-                        <span>#js</span>
-                        <span>#effect</span>
-                      </div>
-                      <div class="description">
-                        打字机效果，就是文字一个一个的显示出来，就像打字机一样，这种效果...
-                      </div>
-                      <div class="read-more">
-                        <a href="/blog.html">Read more</a>
-                      </div>
-                    </div>
-                  </article>
-                </li>
-                <li>
-                  <article class="article-container">
-                    <div>
-                      <div class="date">February 22, 2024</div>
-                    </div>
-                    <div style="margin-top: 0.5rem">
-                      <h2 class="title">效果</h2>
-                      <div class="tag">
-                        <span>#j</span>
-                        <span>#efect</span>
-                      </div>
-                      <div class="description">
-                        打字机效果，就是文字显示出来，就像打字机一样，这种效果...
-                      </div>
-                      <div class="read-more">
-                        <a href="/blog.html">Read more</a>
-                      </div>
-                    </div>
-                  </article>
-                </li> -->
+              <!-- 文章列表，由js自动生成 -->
             </ul>
           </div>
         </div>
@@ -252,49 +213,6 @@
       }
     </style>
     <script>
-      // 创建文章函数
-      // function createArticleItem(article) {
-      //   const articleContainer = document.createElement("article");
-      //   articleContainer.className = "article-container";
-      //   const dateElement = document.createElement("div");
-      //   dateElement.className = "date";
-      //   dateElement.textContent = article.date;
-      //   const titleElement = document.createElement("h2");
-      //   titleElement.className = "title";
-      //   titleElement.textContent = article.title;
-      //   const tagElement = document.createElement("div");
-      //   tagElement.className = "tag";
-      //   tagElement.append(
-      //     ...article.tags.map((tag) => {
-      //       const spanElement = document.createElement("span");
-      //       spanElement.textContent = `#${tag}`;
-      //       return spanElement;
-      //     })
-      //   );
-      //   const descriptionElement = document.createElement("div");
-      //   descriptionElement.className = "description";
-      //   descriptionElement.textContent = article.description;
-      //   const readMoreElement = document.createElement("div");
-      //   readMoreElement.className = "read-more";
-      //   const linkElement = document.createElement("a");
-      //   linkElement.href = "/blog.html";
-      //   linkElement.textContent = "Read more";
-      //   readMoreElement.appendChild(linkElement);
-      //   // 按顺序添加所有子元素
-      //   articleContainer.appendChild(dateElement);
-      //   const contentDiv = document.createElement("div");
-      //   contentDiv.style.marginTop = "0.5rem"; // 添加内联样式
-      //   contentDiv.append(
-      //     titleElement,
-      //     tagElement,
-      //     descriptionElement,
-      //     readMoreElement
-      //   );
-      //   articleContainer.appendChild(contentDiv);
-      //   const listItem = document.createElement("li");
-      //   listItem.appendChild(articleContainer);
-      //   return listItem;
-      // }
       function createArticleItem(article) {
         const articleTemplate = `
           <li>
@@ -369,6 +287,9 @@
         }
       ];
 
+      // 反转列表，优先显示最新的文章
+      articles.reverse();
+      
       // 当前文章列表，只取前两个，分页
       let currentArticles = articles.slice(0, 2);
 
@@ -479,6 +400,7 @@
           nextButton.style.opacity = currentPage === totalPages ? 0.5 : 1;
         }
       });
+      showCurrentPage();
     </script>
   </body>
 </html>
