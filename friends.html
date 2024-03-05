@@ -39,55 +39,68 @@
         line-height: 2rem;
         color: rgb(107 114 128);
       }
-      .project-list {
+      .friend-list {
         border-top: 1px solid rgb(229, 231, 235);
       }
-      .project-list h3 {
+      .friend-list h3 {
         font-size: 1.875rem;
         margin-top: 2rem;
         margin-bottom: 1rem;
       }
 
-      .project-container {
+      .friends-container {
         display: flex;
         flex-wrap: wrap;
       }
 
-      .project-item {
-        height: 492px;
-        width: 342px;
-        padding: 1rem;
+      .friends-item {
+        min-height: 100px;
+        width: 25%;
+        padding: 0.5rem;
+        box-sizing: border-box;
       }
 
-      .project-card {
+      .friends-card {
         display: flex;
         flex-direction: column;
+        text-align: center;
         background-color: azure;
-        width: 100%;
-        height: 100%;
+        padding: 1rem;
         border-radius: 0.5rem;
+        height: 100%;
+        box-sizing: border-box;
         overflow: hidden;
         box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
           rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.12) 0px 8px 30px 0px;
       }
 
-      .project-image img {
-        object-fit: contain;
-        height: 100%;
-        width: 100%;
+      .friends-image img {
+        object-fit: cover;
+        height: 7rem;
+        width: 7rem;
+        border-radius: 50%;
       }
 
-      .project-details {
+      .friends-details {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
         height: 100%;
         padding: 10px;
       }
-      
-      .project-details a {
+      .friends-details p {
+        margin-top: 0;
+        color: rgb(107, 114, 128);
+      }
+      .friends-details a {
         color: rgb(99, 102, 241);
       }
+      @media (max-width: 767px) {
+        .friends-item{
+          width: 50%;
+        }
+      }
+
     </style>
   </head>
   <body>
@@ -117,13 +130,13 @@
                 <span>Snippets</span>
               </a>
               <a href="/projects.html">
-                <span style="background-color: rgb(229 231 235)">Projects</span>
+                <span>Projects</span>
               </a>
               <a href="/about.html">
                 <span>About</span>
               </a>
               <a href="/friends.html">
-                <span>Friends</span>
+                <span style="background-color: rgb(229 231 235)">Friends</span>
               </a>
             </div>
             <div class="side-nav">
@@ -169,45 +182,57 @@
         <div class="blog-container">
           <div class="blog-header">
             <div class="blog-title">
-              <h1>Projects</h1>
-              <p>
-                My open-source side projects and stuff that I built with my
-                colleagues at work
-              </p>
+              <h1>Friends</h1>
+              <p>My friends and the tech bloggers I recommend</p>
             </div>
           </div>
-          <div class="project-list">
+          <div class="friend-list">
             <h3>Work</h3>
-            <div class="project-container">
-              <div class="project-item">
-                <div class="project-card">
-                  <div class="project-image">
+            <div class="friends-container">
+              <div class="friends-item">
+                <div class="friends-card">
+                  <div class="friends-image">
                     <img
                       src="https://tc.mwm.moe/i/1/2023/10/28/653c76d30a5f7.webp"
                       alt="Project Image"
                     />
                   </div>
-                  <div class="project-details">
-                    <h2>23123</h2>
-                    <p>
-                      An open-source Alpha video player within the company that
-                      can play Alpha videos on the web.
-                    </p>
-                    <a href="">Learn more →</a>
+                  <div class="friends-details">
+                    <div>
+                      <h2>23123</h2>
+                      <p>我的朋友</p>
+                    </div>
+                    <a href="">Visit →</a>
                   </div>
                 </div>
               </div>
-              <div class="project-item">
-                <div class="project-card"></div>
+              <div class="friends-item">
+                <div class="friends-card">
+                  <div class="friends-image">
+                    <img
+                      src="https://tc.mwm.moe/i/1/2023/10/28/653c76d30a5f7.webp"
+                      alt="Project Image"
+                    />
+                  </div>
+                  <div class="friends-details">
+                    <div>
+                      <h2>1247</h2>
+                      <p>
+                        我的朋友我的朋友我的朋友我的朋友我的朋友我的朋友我的朋友我的朋友我的朋友
+                      </p>
+                    </div>
+                    <a href="">Visit →</a>
+                  </div>
+                </div>
               </div>
-              <div class="project-item">
-                <div class="project-card"></div>
+              <div class="friends-item">
+                <div class="friends-card"></div>
               </div>
-              <div class="project-item">
-                <div class="project-card"></div>
+              <div class="friends-item">
+                <div class="friends-card"></div>
               </div>
-              <div class="project-item">
-                <div class="project-card"></div>
+              <div class="friends-item">
+                <div class="friends-card"></div>
               </div>
             </div>
           </div>
