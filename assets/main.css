@@ -1,3 +1,34 @@
+:root {
+  --overlay-color: rgba(255, 255, 255, .75);
+  --overlay-bg-color:rgb(229 231 235);
+  --shadow-color: rgba(0, 0, 0, .4);
+  --text-color-primary: rgb(17, 24, 39);
+  --text-color-regular:rgb(31, 41, 55);
+  --text-color-secondary:rgb(75, 85, 99);
+  --text-color-disabled:rgb(107, 114, 128);
+  --gradient-from: #ca8a04;
+  --gradient-to: #dc2626;
+  --tag-text-color:rgb(99, 102, 241);
+  --border-color: rgb(211, 214, 219);
+  --button-hover-bg-color: rgb(229 231 235);
+}
+
+html.dark {
+  background-color: rgb(40, 44, 51);
+  --overlay-color: rgba(34, 39, 46, .75);
+  --overlay-bg-color:rgb(31 41 55);
+  --shadow-color: rgba(14, 116, 144, .5);
+  --text-color-primary: rgb(243 244 246);
+  --text-color-regular:rgb(255, 255, 255);
+  --text-color-secondary:rgb(156, 163, 175);
+  --text-color-disabled: rgb(229, 231, 235);
+  --gradient-from: #10b981;
+  --gradient-to: #65a30d;
+  --tag-text-color:rgb(129, 140, 248);
+  --border-color: rgb(59, 69, 85);
+  --button-hover-bg-color: rgb(55 65 81);
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -13,7 +44,7 @@
   /* 100vw包括滚动条宽度，因此会出现横向滚动条 */
   /* border-right: 4px solid rgba(255, 255, 255, 0.8); 少的1vw用边框不上，看不出来 */
   backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--overlay-color);
 
   position: absolute;
   left: 50%;
@@ -56,6 +87,7 @@ a>span:hover {
 }
 
 .nav-header span {
+  color: var(--text-color-primary);
   margin-left: 0.5rem;
   padding: 0.5rem 0.75rem;
   border-radius: 0.25rem;
@@ -64,7 +96,7 @@ a>span:hover {
 }
 
 .nav-header span:hover {
-  background-color: rgb(229 231 235);
+  background-color: var(--button-hover-bg-color);
   border-bottom: 0px;
 }
 
@@ -78,6 +110,7 @@ a a {
 }
 
 .hello {
+  color: var(--text-color-secondary);
   margin-top: 3rem;
   margin-bottom: 2rem;
   align-items: start;
@@ -92,7 +125,7 @@ a a {
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  background-image: linear-gradient(to right, #ca8a04, #dc2626);
+  background-image: linear-gradient(to right, var(--gradient-from),var(--gradient-to));
 }
 
 .howdy i {
@@ -108,12 +141,13 @@ a a {
 
 .self-introduction,
 .self-about {
+  color: var(--text-color-primary);
   line-height: 2rem;
   font-size: 1.125em;
 }
 
 .self-about p {
-  color: rgb(75 85 99);
+  color: var(--text-color-secondary);
   margin-block-end: 0;
 }
 
@@ -155,7 +189,7 @@ a a {
 .blog-about span {
   margin-left: 0.5rem;
   font-size: 1.125rem;
-  color: rgb(75, 85, 99);
+  color: var(--text-color-secondary);
 }
 
 #card {
@@ -177,7 +211,7 @@ a a {
   flex-direction: column;
   overflow: hidden;
   margin-top: 2rem;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 4px var(--shadow-color);
   height: fit-content;
   /*剪裁掉多余的空白*/
   transition: transform 0.05s ease;
@@ -193,24 +227,24 @@ a a {
 
 .card-content {
   padding: 1rem 1.5rem;
-  background-color: rgb(255, 255, 255);
 }
 
 .card-content h3 {
   font-size: 1.25rem;
-  color: rgb(31 41 55);
+  color: var(--text-color-regular);
   font-weight: 600;
   margin: 0;
 }
 
 .card-content h5 {
+  color: var(--text-color-secondary);
   margin: 0.5rem 0;
   font-size: inherit;
   font-weight: inherit;
 }
 
 .social-links {
-  color: rgb(55 65 81);
+  color: var(--text-color-secondary);
   margin-top: 20px;
 }
 
@@ -225,16 +259,16 @@ a a {
 }
 
 .article-container {
+  color: var(--text-color-secondary);
   padding: 3rem 0;
-  border-top: 1px solid rgb(229, 231, 235);
+  border-top: 1px solid var(--border-color);
 }
-
 .date {
   font-weight: 500;
-  color: rgb(107, 114, 128);
 }
 
 .title {
+  color: var(--text-color-primary);
   font-size: 1.875rem;
   line-height: 2.25rem;
   margin: 0;
@@ -242,7 +276,7 @@ a a {
 }
 
 .tag {
-  color: rgb(99, 102, 241);
+  color: var(--tag-text-color);
   font-weight: 500;
 }
 
@@ -251,13 +285,12 @@ a a {
 }
 
 .description {
-  color: rgb(107, 114, 128);
   margin: 1.5rem 0;
 }
 
 .read-more {
   font-weight: 500;
-  color: rgb(99, 102, 241);
+  color: var(--tag-text-color);
 }
 
 .footer-container {
@@ -265,7 +298,7 @@ a a {
   justify-content: space-between;
   margin-bottom: 2.5rem;
   margin-top: 4rem;
-  color: rgb(107 114 128);
+  color: var(--text-color-secondary);
 }
 
 @media (min-width: 768px) {
@@ -329,7 +362,7 @@ a a {
     top: 0;
     left: 0;
     transform: translateX(100%);
-    background-color: rgb(229 231 235);
+    background-color: var(--overlay-bg-color);
     width: 100vw;
     height: 100vh;
     opacity: .95;

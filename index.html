@@ -80,6 +80,7 @@
                   background-repeat: no-repeat;
                   background-size: contain;
                 "
+                onclick="document.documentElement.classList.toggle('dark');"
               >
                 &nbsp; &nbsp; &nbsp;
               </span>
@@ -181,7 +182,7 @@
               </a>
             </div>
             <p style="margin: 2rem 0">
-              <span style="color: rgb(75, 85, 99); font-size: 1.125rem"
+              <span style="font-size: 1.125rem"
                 >Happy reading</span
               ><i
                 style="
@@ -276,15 +277,10 @@
             </li>
           </ul>
         </div>
-        <div style="text-align: right;font-weight: 500">
+        <div style="text-align: right; font-weight: 500">
           <a href="/blog-all.html">
-            <span
-              style="
-                color: rgb(99, 102, 241);
-                cursor: pointer;
-              "
-            >
-            All Posts →
+            <span style="color: var(--tag-text-color); cursor: pointer">
+              All Posts →
             </span>
           </a>
         </div>
@@ -409,7 +405,7 @@
           id: 3,
           date: "February 23, 2024",
           title: "协程安全性",
-          tags: ["js","协程", "并发"],
+          tags: ["js", "协程", "并发"],
           description: "协程的安全性...",
           url: "/blog.html#3",
         },
@@ -420,7 +416,7 @@
           tags: ["测试", "开发"],
           description: "这是测试文章",
           url: "blog.html#3",
-        }
+        },
       ];
 
       /**文章列表容器 */
