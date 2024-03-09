@@ -5,12 +5,16 @@
   --text-color-primary: rgb(17, 24, 39);
   --text-color-regular:rgb(31, 41, 55);
   --text-color-secondary:rgb(75, 85, 99);
-  --text-color-disabled:rgb(107, 114, 128);
+  --text-color-disabled:rgb(55, 65, 81);
   --gradient-from: #ca8a04;
   --gradient-to: #dc2626;
   --tag-text-color:rgb(99, 102, 241);
   --border-color: rgb(211, 214, 219);
   --button-hover-bg-color: rgb(229 231 235);
+  --input-bg-color: rgb(243 244 246);
+  --border-color: rgb(209 213 219);
+  --code-bg-color: #282c34;
+  -code-bg-color-light: #dfdcdcc4;
 }
 
 html.dark {
@@ -21,12 +25,16 @@ html.dark {
   --text-color-primary: rgb(243 244 246);
   --text-color-regular:rgb(255, 255, 255);
   --text-color-secondary:rgb(156, 163, 175);
-  --text-color-disabled: rgb(229, 231, 235);
+  --text-color-disabled: rgb(209, 213, 219);
   --gradient-from: #10b981;
   --gradient-to: #65a30d;
   --tag-text-color:rgb(129, 140, 248);
   --border-color: rgb(59, 69, 85);
   --button-hover-bg-color: rgb(55 65 81);
+  --input-bg-color: rgb(31 41 55);
+  --border-color: rgb(107 114 128);
+  --code-bg-color: #222;
+  -code-bg-color-light: #dfdcdcc4;
 }
 
 .header-container {

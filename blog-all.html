@@ -28,6 +28,7 @@
         padding-bottom: 3rem;
       }
       .blog-title h1 {
+        color: var(--text-color-primary);
         margin: 0;
         line-height: 3.5rem;
         font-size: 3.75rem;
@@ -37,7 +38,7 @@
       .blog-title p {
         font-size: 1.125rem;
         line-height: 2rem;
-        color: rgb(107 114 128);
+        color: var(--text-color-secondary);
       }
       .blog-search {
         position: relative;
@@ -47,12 +48,13 @@
         align-items: center;
       }
       .blog-search input {
+        background-color: var(--input-bg-color);
         width: 100%;
         padding: 0.5rem 1rem;
         border-radius: 0.375rem;
         font-size: 1rem;
         line-height: 1.5rem;
-        border: 1px solid #d1d5db;
+        border: 1px solid var(--border-color);
       }
       .blog-search input:focus {
         outline: none;
@@ -87,7 +89,9 @@
                 &nbsp;&nbsp;&nbsp;
               </span>
               <a href="/blog-all.html">
-                <span style="background-color: rgb(229 231 235)">Blog</span>
+                <span style="background-color: var(--button-hover-bg-color)"
+                  >Blog</span
+                >
               </a>
               <a href="">
                 <span>Gallery</span>
@@ -124,6 +128,12 @@
                   background-repeat: no-repeat;
                   background-size: contain;
                 "
+                onclick="document.documentElement.classList.toggle('dark');
+                  if (this.style.backgroundImage.includes('moon.svg')) {
+                    this.style.backgroundImage = 'url(./assets/sun.svg)';
+                  } else {
+                    this.style.backgroundImage = 'url(./assets/moon.svg)';
+                  }"
               >
                 &nbsp; &nbsp; &nbsp;
               </span>
@@ -203,12 +213,13 @@
       .pager-nav {
         display: flex;
         justify-content: space-between;
+        color: var(--text-color-primary);
       }
       .pager-nav button {
         padding: 0.5rem 1rem;
         border: 0;
-        background-color: #fff;
-        color: #000;
+        background-color: transparent;
+        color: var(--text-color-primary);
         cursor: pointer;
       }
     </style>
@@ -265,12 +276,12 @@
           id: 3,
           date: "February 23, 2024",
           title: "协程安全性",
-          tags: ["js","协程", "并发"],
+          tags: ["js", "协程", "并发"],
           description: "协程的安全性...",
           url: "/blog.html?postID=3",
         },
         {
-          id:4,
+          id: 4,
           date: "February 23, 2024",
           title: "一个markdown编辑器",
           tags: ["js", "开发"],
@@ -284,12 +295,12 @@
           tags: ["测试", "开发"],
           description: "这是测试文章",
           url: "blog.html?postID=3",
-        }
+        },
       ];
 
       // 反转列表，优先显示最新的文章
       articles.reverse();
-      
+
       // 当前文章列表，只取前两个，分页
       let currentArticles = articles.slice(0, 2);
 

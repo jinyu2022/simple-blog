@@ -158,6 +158,12 @@
                   background-repeat: no-repeat;
                   background-size: contain;
                 "
+                onclick="document.documentElement.classList.toggle('dark');
+                if (this.style.backgroundImage.includes('moon.svg')) {
+                  this.style.backgroundImage = 'url(./assets/sun.svg)';
+                } else {
+                  this.style.backgroundImage = 'url(./assets/moon.svg)';
+                }"
               >
                 &nbsp; &nbsp; &nbsp;
               </span>

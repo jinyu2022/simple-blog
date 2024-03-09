@@ -80,7 +80,12 @@
                   background-repeat: no-repeat;
                   background-size: contain;
                 "
-                onclick="document.documentElement.classList.toggle('dark');"
+                onclick="document.documentElement.classList.toggle('dark');
+                if (this.style.backgroundImage.includes('moon.svg')) {
+                  this.style.backgroundImage = 'url(./assets/sun.svg)';
+                } else {
+                  this.style.backgroundImage = 'url(./assets/moon.svg)';
+                }"
               >
                 &nbsp; &nbsp; &nbsp;
               </span>
@@ -182,8 +187,7 @@
               </a>
             </div>
             <p style="margin: 2rem 0">
-              <span style="font-size: 1.125rem"
-                >Happy reading</span
+              <span style="font-size: 1.125rem">Happy reading</span
               ><i
                 style="
                   background-image: url(https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f37b.svg);
